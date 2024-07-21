@@ -5,9 +5,10 @@ Welcome to my Computational Physics Exercises repository! This repository contai
 ## Table of Contents
 - [Introduction](#introduction)
 - [Course Outline](#course-outline)
+- [Block I - Fundamental Numerical Methods](#block-i---fundamental-numerical-methods)
+- [Block II - Advanced Topics and Applications](#block-ii---advanced-topics-and-applications)
 - [Setup and Installation](#setup-and-installation)
 - [Usage](#usage)
-- [Contributing](#contributing)
 - [License](#license)
 - [Contact](#contact)
 
