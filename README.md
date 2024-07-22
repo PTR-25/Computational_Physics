@@ -19,29 +19,29 @@ This repository contains exercises and solutions from the Computational Physics 
 
 ### Block I - Fundamental Numerical Methods
 
-1. **Tridiagonal Matrix Solver**: Implement a function to solve tridiagonal systems of equations and compare the performance of different solving methods.
+1. **Tridiagonal matrix solver**: Implement a function to solve tridiagonal systems of equations and compare the performance of different solving methods.
 
-2. **Laplace Equation Solver**: Solve the Laplace equation with Dirichlet and Neumann boundary conditions using sparse matrix methods and iterative solvers.
+2. **Laplace equation solver**: Solve the Laplace equation with Dirichlet and Neumann boundary conditions using sparse matrix methods and iterative solvers.
 
-3. **Damped Harmonic Oscillator**: Solve the differential equation for a damped harmonic oscillator using explicit, implicit, and semi-implicit methods. Compare numerical results with the exact solution.
+3. **Damped harmonic oscillator**: Solve the differential equation for a damped harmonic oscillator using explicit, implicit, and semi-implicit methods. Compare numerical results with the exact solution.
 
-4. **Poisson's Equation in 1D and 2D**: Implement numerical methods to solve Poisson's equation in one and two dimensions.
+4. **Poisson's equation in 1D and 2D**: Implement numerical methods to solve Poisson's equation in one and two dimensions.
 
-5. **Damped Waves and Telegraph Equation**: Solve wave equations with damping and source terms using explicit and implicit methods.
+5. **Damped waves and Telegraph equation**: Solve wave equations with damping and source terms using explicit and implicit methods.
 
 ### Block II - Advanced Topics and Applications
 
-1. **Crystalline Lattice Generation**: Create a program to generate different types of crystalline lattices and visualize them in 3D.
+1. **Crystalline lattice generation**: Create a program to generate different types of crystalline lattices and visualize them in 3D.
 
-2. **Orbital Mechanics Simulation**: Calculate the Earth's orbit around the Sun using numerical methods to solve the equations of motion.
+2. **Orbital mechanics simulation**: Calculate the Earth's orbit around the Sun using numerical methods to solve the equations of motion.
 
-3. **Lennard-Jones Potential**: Calculate the total energy of a system using the Lennard-Jones potential and simulate molecular dynamics.
+3. **Lennard-Jones potential**: Calculate the total energy of a system using the Lennard-Jones potential and simulate molecular dynamics.
 
-4. **Force Calculation with Pair Potentials**: Extend the previous exercise to calculate forces on particles and simulate their trajectories using the Verlet algorithm.
+4. **Force calculation with pair potentials**: Extend the previous exercise to calculate forces on particles and simulate their trajectories using the Verlet algorithm.
 
-5. **Monte Carlo Integration**: Implement the Monte Carlo method to integrate functions and explore statistical errors.
+5. **Monte Carlo integration**: Implement the Monte Carlo method to integrate functions and explore statistical errors.
 
-6. **Metropolis Monte Carlo Simulation**: Implement the Metropolis Monte Carlo method to simulate an ideal gas and study its energy distribution at different temperatures.
+6. **Metropolis Monte Carlo simulation**: Implement the Metropolis Monte Carlo method to simulate an ideal gas and study its energy distribution at different temperatures.
 
 ## Setup and Installation
 To get started with the exercises, follow these steps:

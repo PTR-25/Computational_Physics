@@ -1,10 +1,13 @@
 import numpy as np
-import time
+import timeit
 import matplotlib.pyplot as plt
+import gc
+import cProfile
+import pstats
+import io
 
 def TridiagonalSolver(d, o, u, r):
     n = len(d)
-    # Create copies of the input arrays to avoid modifying them
     d = np.copy(d)
     r = np.copy(r)
     o = np.copy(o)
@@ -12,16 +15,15 @@ def TridiagonalSolver(d, o, u, r):
     
     # Forward elimination
     for i in range(1, n):
-        w = u[i-1] / d[i-1]
-        d[i] -= w * o[i-1]
-        r[i] -= w * r[i-1]
+        w = u[i-1]/d[i-1]
+        d[i] -= w*o[i-1]
+        r[i] -= w*r[i-1]
     
     # Backward substitution
     x = np.zeros(n)
-    x[-1] = r[-1] / d[-1]
+    x[-1] = r[-1]/d[-1]
     for i in range(n-2, -1, -1):
-        x[i] = (r[i] - o[i] * x[i+1]) / d[i]
-    
+        x[i] = (r[i]-o[i]*x[i+1])/d[i]
     return x
 
 # Function to generate random tridiagonal systems
@@ -34,31 +36,44 @@ def generate_tridiagonal_system(n):
 
 # Function to measure time and solve using different methods
 def measure_time_and_solve():
-    sizes = [10, 100, 500, 1000, 2000, 10000]
+    sizes = np.arange(10, 2001, 1)
     thomas_times = []
     inv_times = []
     solve_times = []
     
+    repetitions = 10
+    warmup_reps = 10
+
     for size in sizes:
         d, o, u, r = generate_tridiagonal_system(size)
-        
-        # Measure time for TridiagonalSolver
-        start = time.time()
-        TridiagonalSolver(d, o, u, r)
-        thomas_times.append(time.time() - start)
-        
-        # Construct the full matrix for numpy solutions
         A = np.diag(d) + np.diag(o, k=1) + np.diag(u, k=-1)
         
+        # Disable garbage collection
+        gc.disable()
+        
+        # Perform warm-up runs
+        for _ in range(warmup_reps):
+            TridiagonalSolver(d, o, u, r)
+            np.linalg.inv(A)
+            np.linalg.solve(A, r)
+        
+        # Measure time for TridiagonalSolver
+        thomas_timer = timeit.Timer(lambda: TridiagonalSolver(d, o, u, r))
+        thomas_time = min(thomas_timer.repeat(repeat=5, number=repetitions)) / repetitions
+        thomas_times.append(thomas_time)
+
         # Measure time for numpy.linalg.inv
-        start = time.time()
-        np.linalg.inv(A)
-        inv_times.append(time.time() - start)
+        inv_timer = timeit.Timer(lambda: np.linalg.inv(A))
+        inv_time = min(inv_timer.repeat(repeat=5, number=repetitions)) / repetitions
+        inv_times.append(inv_time)
         
         # Measure time for numpy.linalg.solve
-        start = time.time()
-        np.linalg.solve(A, r)
-        solve_times.append(time.time() - start)
+        solve_timer = timeit.Timer(lambda: np.linalg.solve(A, r))
+        solve_time = min(solve_timer.repeat(repeat=5, number=repetitions)) / repetitions
+        solve_times.append(solve_time)
+        
+        # Enable garbage collection
+        gc.enable()
     
     return sizes, thomas_times, inv_times, solve_times
 
@@ -74,5 +89,6 @@ def plot_results(sizes, thomas_times, inv_times, solve_times):
     plt.show()
 
 # Main execution
-sizes, thomas_times, inv_times, solve_times = measure_time_and_solve()
-plot_results(sizes, thomas_times, inv_times, solve_times)
+if __name__ == "__main__":
+    sizes, thomas_times, inv_times, solve_times = measure_time_and_solve()
+    plot_results(sizes, thomas_times, inv_times, solve_times)
