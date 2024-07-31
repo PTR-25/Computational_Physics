@@ -33,7 +33,7 @@ def generate_tridiagonal_system(n):
     return d, o, u, r
 
 def measure_time_and_solve():
-    sizes = np.arange(10, 501, 1)
+    sizes = np.arange(10, 101, 1)
     # We start at a 10x10 matrix and increase the size 1 by 1 until 500
     thomas_times = []
     inv_times = []
